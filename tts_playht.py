@@ -7,6 +7,10 @@ import json
 AUTHORIZATION = ""
 X_USER_ID = ""
 
+def init(AUTHORIZATION, X_USER_ID):
+  AUTHORIZATION = this.AUTHORIZATION
+  X_USER_ID = this.X_USER_ID
+
 def generate_transcript(contentArray, voice = "en-AU-Neural2-A", style = ""):
   if (AUTHORIZATION =="" or X_USER_ID == ""):
     print("no Authorization or id")
