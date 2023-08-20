@@ -36,11 +36,13 @@ def generate_transcript(contentArray, voice = "en-AU-Neural2-A", style = ""):
   }
   
   response = requests.post(url, json=payload, headers=headers)
-  i = 3
+  i = 1
   while(response.status_code == 400 and i>=0 ):
     time.sleep(random.choice(range(5)))
     response = requests.post(url, json=payload, headers=headers)
     print(response.json())
+    if(response.json() == "{}"):
+      print("you are probably out of words.")
     i-=1
   transcriptionId = response.json()["transcriptionId"]
 
