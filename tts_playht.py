@@ -36,7 +36,7 @@ def generate_transcript(contentArray, voice = "en-AU-Neural2-A", style = ""):
   }
   
   response = requests.post(url, json=payload, headers=headers)
-  i = 10
+  i = 3
   while(response.status_code == 400 and i>=0 ):
     time.sleep(random.choice(range(5)))
     response = requests.post(url, json=payload, headers=headers)
