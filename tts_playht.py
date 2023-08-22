@@ -87,6 +87,7 @@ def text_to_sound_file(contentArray, voice = "en-AU-Neural2-A", style = "",file_
 
 def get_sounds(language = "all"):
   url = "https://play.ht/api/v1/getVoices"
+  global voices_list
   headers = {
       "accept": "application/json",
       "AUTHORIZATION": AUTHORIZATION,
