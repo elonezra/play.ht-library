@@ -6,7 +6,7 @@ import json
 
 AUTHORIZATION = ""
 X_USER_ID = ""
-
+voices_list = {}
 def init(auth, user_id):
   global AUTHORIZATION
   global X_USER_ID
@@ -84,6 +84,7 @@ def text_to_sound_file(contentArray, voice = "en-AU-Neural2-A", style = "",file_
     file_name = voice+"_file.mp3"
   open(file_name, 'wb').write(r.content)
 
+
 def get_sounds(language = "all"):
   url = "https://play.ht/api/v1/getVoices"
   headers = {
@@ -91,12 +92,12 @@ def get_sounds(language = "all"):
       "AUTHORIZATION": AUTHORIZATION,
       "X-USER-ID": X_USER_ID
   }
-
-  response = requests.get(url, headers=headers)
-  if(response.status_code == 403):
-    print("your auth data are wrong or missing, use init to configure it.")
-    return 
-  # print(response.json())
+  if(len(voices_list) == 0):
+    response = requests.get(url, headers=headers)
+    if(response.status_code == 403):
+      print("your auth data are wrong or missing, use init to configure it.")
+      return 
+    # print(response.json())
   voices_list = response.json()["voices"]
 
   # Filter out the elements that have a "language" key that does not contain the substring "English"
